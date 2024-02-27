@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+import mpld3
 
 def main():
     st.title("Cargar archivo en Streamlit")
@@ -16,13 +17,19 @@ def main():
         # Mostrar el DataFrame
         st.write("Contenido del archivo:")
         st.write(df)
-            # Obtenemos la columna de interés
+        
+        # Obtenemos la columna de interés
         acumulada_promedio = df["ACUMULADA PROMEDIO"]
     
-        # Generamos un histograma
-        _, ax = plt.subplots()
-        ax.hist(acumulada_promedio, bins=20)
-        st.pyplot(ax)
+        # Crear un gráfico básico de Matplotlib
+        fig, ax = plt.subplots()
+        ax.plot([1, 2, 3, 4, 5])
+    
+        # Convertir el gráfico en interactivo con mpld3
+        fig_html = mpld3.fig_to_html(fig)
+        
+        # Mostrar el gráfico interactivo en Streamlit
+        st.components.v1.html(fig_html)
 
 if __name__ == "__main__":
     main()
