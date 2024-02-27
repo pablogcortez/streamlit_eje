@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import mpld3
 
 def main():
     st.title("Cargar archivo en Streamlit")
