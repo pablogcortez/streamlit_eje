@@ -20,16 +20,6 @@ def main():
         
         # Obtenemos la columna de interés
         acumulada_promedio = df["ACUMULADA PROMEDIO"]
-    
-        # Crear un gráfico básico de Matplotlib
-        fig, ax = plt.subplots()
-        ax.plot([1, 2, 3, 4, 5])
-    
-        # Convertir el gráfico en interactivo con mpld3
-        fig_html = mpld3.fig_to_html(fig)
-        
-        # Mostrar el gráfico interactivo en Streamlit
-        st.components.v1.html(fig_html)
 
 if __name__ == "__main__":
     main()
