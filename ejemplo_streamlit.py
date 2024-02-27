@@ -1,19 +1,19 @@
 import streamlit as st
-
-def calcular_cuadrado(numero):
-    return numero ** 2
-
+import pandas as pd
 
 def main():
-    st.title('Calculadora de Cuadrados')
+    st.title("Cargar archivo de Excel en Streamlit")
 
-    numero = st.number_input('Ingrese un número', step=1)
+    # Widget para cargar el archivo de Excel
+    uploaded_file = st.file_uploader("Cargar archivo Excel", type=["xlsx"])
 
-    if st.button('Calcular cuadrado'):
-        cuadrado = calcular_cuadrado(numero)
-        st.success(f'El cuadrado de {numero} es {cuadrado}')
-
+    if uploaded_file is not None:
+        # Leer el archivo de Excel en un DataFrame de Pandas
+        df = pd.read_excel(uploaded_file)
+        
+        # Mostrar el DataFrame
+        st.write("Contenido del archivo Excel:")
+        st.write(df)
 
 if __name__ == "__main__":
     main()
-
