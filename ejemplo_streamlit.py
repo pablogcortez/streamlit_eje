@@ -23,14 +23,17 @@ def main():
         # Leer el archivo en un DataFrame de Pandas
         df = pd.read_csv(uploaded_file)
         
+        # Convertir la columna de fecha a tipo datetime
+        df["FECHA"] = pd.to_datetime(df["FECHA"])
+        
         # Mostrar el DataFrame
         st.write("Contenido del archivo:")
         st.dataframe(df)
         
         # Filtro por fecha
         st.sidebar.subheader("Filtrar por Fecha")
-        start_date = st.sidebar.date_input("Fecha de inicio", min(df["FECHA"]), max(df["FECHA"]))
-        end_date = st.sidebar.date_input("Fecha de fin", min(df["FECHA"]), max(df["FECHA"]))
+        start_date = st.sidebar.date_input("Fecha de inicio", min(df["FECHA"]))
+        end_date = st.sidebar.date_input("Fecha de fin", max(df["FECHA"]))
         
         # Filtrar los datos según el rango de fechas seleccionado
         filtered_df = df[(df["FECHA"] >= start_date) & (df["FECHA"] <= end_date)]
