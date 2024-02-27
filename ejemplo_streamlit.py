@@ -13,19 +13,20 @@ def main():
     if uploaded_file is not None:
         # Leer el archivo en un DataFrame de Pandas
         df = pd.read_csv(uploaded_file)
-        
-        # Calcular Acumulada Promedio
-        acumulada_promedia = df['COLUMN_DE_INTERÉS'].groupby(pd.Grouper(freq='W')).mean().cumsum()
-        acumulada_promedia.index += 1
-        st.session_state.acumulada_promedia = acumulada_promedia
 
-        # Mostrar el DataFrame
-        st.write("Contenido del archivo:")
-        st.write(df)
-
-        # Mostrar el gráfico de barras
-        st.write("Gráfico de Barras de Acumulada Promedio:")
-        st.bar_chart(st.session_state.acumulada_promedia, x=[f"Semana {wk}" for wk in range(len(st.session_state.acumulada_promedia.index))])
+        if "ACUMULADA PROMEDIO" in df.columns:
+            # Calcular Acumulada Promedio
+            acumulada_promedia = df['ACUMULADA PROMEDIO'].groupby(pd.Grouper(freq='W')).mean().cumsum()
+            acumulada_promedia.index += 1
+            st.session_state.acumulada_promedia = acumulada_promedia
+    
+            # Mostrar el DataFrame
+            st.write("Contenido del archivo:")
+            st.write(df)
+    
+            # Mostrar el gráfico de barras
+            st.write("Gráfico de Barras de Acumulada Promedio:")
+            st.bar_chart(st.session_state.acumulada_promedia, x=[f"Semana {wk}" for wk in range(len(st.session_state.acumulada_promedia.index))])
 
 if __name__ == "__main__":
     main()
