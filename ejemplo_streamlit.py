@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
 def main():
     st.title("Cargar archivo en Streamlit")
@@ -14,6 +16,13 @@ def main():
         # Mostrar el DataFrame
         st.write("Contenido del archivo:")
         st.write(df)
+            # Obtenemos la columna de interés
+        acumulada_promedio = df["ACUMULADA PROMEDIO"]
+    
+        # Generamos un histograma
+        _, ax = plt.subplots()
+        ax.hist(acumulada_promedio, bins=20)
+        st.pyplot(ax)
 
 if __name__ == "__main__":
     main()
