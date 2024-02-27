@@ -27,9 +27,21 @@ def main():
         st.write("Contenido del archivo:")
         st.dataframe(df)
         
+        # Filtro por fecha
+        st.sidebar.subheader("Filtrar por Fecha")
+        start_date = st.sidebar.date_input("Fecha de inicio", min(df["FECHA"]), max(df["FECHA"]))
+        end_date = st.sidebar.date_input("Fecha de fin", min(df["FECHA"]), max(df["FECHA"]))
+        
+        # Filtrar los datos según el rango de fechas seleccionado
+        filtered_df = df[(df["FECHA"] >= start_date) & (df["FECHA"] <= end_date)]
+        
+        # Mostrar los datos filtrados
+        st.write("Datos filtrados por fecha:")
+        st.dataframe(filtered_df)
+        
         # Gráfico de barras
         st.subheader("Gráfico de Barras - ACUMULADA PROMEDIO")
-        st.bar_chart(df["ACUMULADA PROMEDIO"])
+        st.bar_chart(filtered_df["ACUMULADA PROMEDIO"])
 
 if __name__ == "__main__":
     main()
