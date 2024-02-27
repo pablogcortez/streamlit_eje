@@ -32,8 +32,8 @@ def main():
         
         # Filtro por fecha
         st.sidebar.subheader("Filtrar por Fecha")
-        start_date = st.sidebar.date_input("Fecha de inicio", min(df["FECHA"]))
-        end_date = st.sidebar.date_input("Fecha de fin", max(df["FECHA"]))
+        start_date = pd.to_datetime(st.sidebar.date_input("Fecha de inicio", min(df["FECHA"])))
+        end_date = pd.to_datetime(st.sidebar.date_input("Fecha de fin", max(df["FECHA"])))
         
         # Filtrar los datos según el rango de fechas seleccionado
         filtered_df = df[(df["FECHA"] >= start_date) & (df["FECHA"] <= end_date)]
