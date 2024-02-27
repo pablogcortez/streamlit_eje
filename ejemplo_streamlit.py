@@ -18,6 +18,8 @@ def main():
         
         # Obtenemos la columna de interés
         acumulada_promedio = df["ACUMULADA PROMEDIO"]
+        st.bar_chart(acumulada_promedio)
+
 
 if __name__ == "__main__":
     main()
